@@ -10,19 +10,29 @@ let colorcode = '';
 
 
  function CopyHex(){
+    const colorText = colorbox.style.backgroundColor;
+    const hexcode = rgbToHex(colorText);
+    const tempInput = document.createElement("input");
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("Color copied to clipboard: " + hexcode);
+};
 
-    const copy = document.getElementById("copy-btn").value
-    
+function rgbToHex(rgbColor) {
+const regex = /rgb\((\d+), (\d+), (\d+)\)/;
+const matches =regex.exec(rgbColor);
+const r = parseInt(matches[1]);
+const g = parseInt(matches[2]);
+const b = parseInt(matches[3]);
+return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+};
 
-    if (copy === color_code) {
-        alert('link copied')
-        return;
-        
-    };
-
-    
-
-}
+function componentToHex(C) {
+    const hex = C.toString(16);
+    return hex.length == 1 ? "0" + hex : hex; 
+};
 
 function GenerateBtn(){
     const hexChers = "0123456789ABCDEF"
@@ -63,13 +73,5 @@ function ResetBtn(){
     color_code.innerHTML = null;
     color_code.style.color = null;
 
-    const reset = document.getElementById("resetBtn").value
-
-    if (reset === '') {
-        alert('link copied')
-        return;
-        
-    };
 
 }
-
