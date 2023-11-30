@@ -46,6 +46,14 @@ function GenerateBtn(){
 
 
 function RGB(){
+    const colorText = colorbox.style.backgroundColor;
+    const tempInput = document.createElement("input")
+    document.body.appendChild(tempInput);
+    tempInput.value = colorText;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+    alert("color copied to clipboard: " + colorText)
 
 }
 
